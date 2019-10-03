@@ -9,8 +9,7 @@ import org.bukkit.inventory.ItemStack;
  * PLAYER_HEAD REMOVED BECAUSE OF {@link LegacyVersionManager#getSkullMaterial()}
  *
  */
-public enum XMaterial {
-	
+public enum XMaterial {	
 	ACACIA_BOAT("BOAT_ACACIA", 0),
 	ACACIA_BUTTON("WOOD_BUTTON", 0),
 	ACACIA_DOOR("ACACIA_DOOR", 0),
@@ -43,7 +42,7 @@ public enum XMaterial {
 	BEDROCK("BEDROCK", 0),
 	BEEF("RAW_BEEF", 0),
 	BEETROOT("BEETROOT", 0),
-	BEETROOTS("BEETROOT", 0),
+	BEETROOTS("BEETROOTS", 0),
 	BEETROOT_SEEDS("BEETROOT_SEEDS", 0),
 	BEETROOT_SOUP("BEETROOT_SOUP", 0),
 	BIRCH_BOAT("BOAT_BIRCH", 0),
@@ -995,5 +994,4 @@ public enum XMaterial {
         }
         return Material.matchMaterial(m);
     }
-	
 }

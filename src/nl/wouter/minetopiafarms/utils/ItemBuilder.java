@@ -21,7 +21,6 @@ import org.bukkit.inventory.meta.SkullMeta;
  * @author NonameSL
  */
 
-@SuppressWarnings("deprecation")
 public class ItemBuilder {
 	private ItemStack is;
 
@@ -67,6 +66,7 @@ public class ItemBuilder {
 	 * @param durability
 	 *            The durability of the item.
 	 */
+	@SuppressWarnings("deprecation")
 	public ItemBuilder(Material m, int amount, byte durability) {
 		is = new ItemStack(m, amount, durability);
 	}
@@ -86,6 +86,7 @@ public class ItemBuilder {
 	 * @param dur
 	 *            The durability to set it to.
 	 */
+	@SuppressWarnings("deprecation")
 	public ItemBuilder setDurability(short dur) {
 		is.setDurability(dur);
 		return this;
@@ -134,6 +135,7 @@ public class ItemBuilder {
 	 * @param owner
 	 *            The name of the skull's owner.
 	 */
+	@SuppressWarnings("deprecation")
 	public ItemBuilder setSkullOwner(String owner) {
 		try {
 			SkullMeta im = (SkullMeta) is.getItemMeta();
@@ -174,6 +176,7 @@ public class ItemBuilder {
 	 * Sets infinity durability on the item by setting the durability to
 	 * Short.MAX_VALUE.
 	 */
+	@SuppressWarnings("deprecation")
 	public ItemBuilder setInfinityDurability() {
 		is.setDurability(Short.MAX_VALUE);
 		return this;

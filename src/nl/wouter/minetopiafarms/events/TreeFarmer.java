@@ -16,12 +16,11 @@ import nl.wouter.minetopiafarms.utils.Utils.TreeObj;
 
 public class TreeFarmer implements Listener {
 
-//	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onBreak(BlockBreakEvent e) {
 		Player p = e.getPlayer();
 
-		if (e.getBlock().getType().toString().contains("_LOG")) {
+		if (e.getBlock().getType().toString().contains("LOG")) {
 			if (!SDBPlayer.createSDBPlayer(e.getPlayer()).getPrefix().equalsIgnoreCase("Houthakker")) {
 				e.getPlayer().sendMessage(Main.getMessage("BeroepNodig").replaceAll("<Beroep>", "houthakker"));
 				e.setCancelled(true);
@@ -33,8 +32,9 @@ public class TreeFarmer implements Listener {
 				return;
 			}
 
-			if (CustomFlags.isAllowed(p, e.getBlock().getLocation(), "houthakker")) {
+			if (!CustomFlags.isAllowed(p, e.getBlock().getLocation(), "houthakker")) {
 				p.sendMessage(Main.getMessage("GeenRegion").replaceAll("<Tag>", "houthakker"));
+				e.setCancelled(true);
 				return;
 			}
 
@@ -52,20 +52,10 @@ public class TreeFarmer implements Listener {
 			Utils.treePlaces.put(e.getBlock().getLocation(), new TreeObj(blockType, blockData));
 			
 			
-			Bukkit.getScheduler().runTaskLater(Main.pl, new Runnable() {
-				@Override
-				public void run() {
-					e.getBlock().setType(blockType);
-					Utils.treePlaces.remove(e.getBlock().getLocation());
-					if (!Utils.is113orUp()) {
-						try {
-							e.getBlock().getClass().getMethod("setData", byte.class).invoke(e.getBlock(), blockData);
-						} catch (Exception ex) {
-							ex.printStackTrace();
-						}
-					}
-				}
-			}, /* 30 seconds multiplied by 20 */30 * 20);
+			Bukkit.getScheduler().runTaskLater(Main.getPlugin(), () -> {
+				e.getBlock().setType(blockType);
+				Utils.treePlaces.remove(e.getBlock().getLocation());
+			}, 30 * 20);
 		}
 	}
 }
